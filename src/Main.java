@@ -1,15 +1,45 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner in = new Scanner(System.in);
+        boolean done = false; // Flag to control the input validation loop
+        String playerAGuess = "";
+        String playerBGuess = "";
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        // Input validation loop for player A's guess
+        do {
+            System.out.print("Player A, pick Rock, Paper, or Scissors (R, P, S): ");
+            playerAGuess = in.nextLine(); // Read the input and convert it to lowercase
+            if (playerAGuess.equalsIgnoreCase("r") || playerAGuess.equalsIgnoreCase("p") || playerAGuess.equalsIgnoreCase("s")) {
+                done = true; // Exit the loop since valid input is received
+            } else {
+                System.out.println("\nInvalid input. Please enter either R, P, or S.");
+            }
+        } while (!done); // Continue looping until valid input is received
+
+        done = false; // Reset the flag for player B's guess
+
+        // Input validation loop for player B's guess
+        do {
+            System.out.print("Player B, pick Rock, Paper, or Scissors (R, P, S): ");
+            playerBGuess = in.nextLine(); // Read the input and convert it to lowercase
+            if (playerBGuess.equalsIgnoreCase("r") || playerBGuess.equalsIgnoreCase("p") || playerBGuess.equalsIgnoreCase("s")) {
+                done = true; // Exit the loop since valid input is received
+            } else {
+                System.out.println("\nInvalid input. Please enter either R, P, or S.");
+            }
+        } while (!done); // Continue looping until valid input is received
+
+        // Determine the winner
+        if (playerAGuess.equals(playerBGuess)) {
+            System.out.println("It's a tie!");
+        } else if (playerAGuess.equals("r") && playerBGuess.equals("s") ||
+                playerAGuess.equals("p") && playerBGuess.equals("r") ||
+                playerAGuess.equals("s") && playerBGuess.equals("p")) {
+            System.out.println("Player A wins!");
+        } else {
+            System.out.println("Player B wins!");
         }
     }
 }
